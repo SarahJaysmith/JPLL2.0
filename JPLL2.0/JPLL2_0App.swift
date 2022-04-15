@@ -6,12 +6,24 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct JPLL2_0App: App {
+    
+    @StateObject private var networkController = NetworkController()
+
+    init() {
+        FirebaseApp.configure()
+      }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            let viewModel = AppViewModel()
+            //TestView()
+            StartView()
+                .environmentObject(viewModel)
+                .environmentObject(NetworkController())
         }
     }
 }
